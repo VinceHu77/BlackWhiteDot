@@ -1,0 +1,54 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="BlackWhiteDot0614"
+run/main_scene="uid://dpyfxrv6a88pv"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalBus="*uid://bso3by7ead26n"
+AppManager="*uid://bm71jurhcmwy"
+AudioManager="*uid://bp3viasj0ubto"
+NetManager="*uid://dwi7x8vyjq467"
+SaveManager="*uid://dyumpasfsjqnp"
+StatsManager="*uid://cc1nn2hcra5eq"
+
+[display]
+
+window/size/viewport_width=1440
+window/size/viewport_height=900
+window/handheld/orientation=1
+
+[dotnet]
+
+project/assembly_name="BlackWhiteDot"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/godot_mcp/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+
+[gui]
+
+theme/custom="uid://c6qtvr28uot8c"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
