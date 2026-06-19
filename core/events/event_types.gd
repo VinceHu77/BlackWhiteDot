@@ -1,0 +1,16 @@
+extends Node
+class_name EventTypes
+
+enum GlobalBus {
+	MODE_SWITCH_REQUESTED,
+	MODE_LOADED,
+	MODE_UNLOADED,
+	GLOBAL_TOAST,
+	SAVE_REQUESTED,
+	SETTINGS_CHANGED,
+	APP_QUIT
+}
+
+enum ModeBus {
+	PIECE_PLACED
+}

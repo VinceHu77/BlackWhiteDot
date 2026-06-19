@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://dpyfxrv6a88pv"]
+
+[ext_resource type="Shader" uid="uid://b3oqkjl88ymrn" path="res://assets/shaders/background.gdshader" id="2_ur4sv"]
+[ext_resource type="Texture2D" uid="uid://ylusirqtyqql" path="res://assets/images/background.png" id="3_j3880"]
+[ext_resource type="Texture2D" uid="uid://bmjriso8peau8" path="res://assets/images/settings.png" id="4_4mmo1"]
+[ext_resource type="Script" uid="uid://dg1f8akn1u7iy" path="res://core/ui/menu_ui.gd" id="4_d63uk"]
+[ext_resource type="PackedScene" uid="uid://bst7cokhtqs3y" path="res://games/shared/ui/online_menu.tscn" id="5_online"]
+[ext_resource type="PackedScene" uid="uid://d555vx3nirb7" path="res://core/ui/invite_dialog.tscn" id="6_invite"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
+shader = ExtResource("2_ur4sv")
+
+[node name="MainMenu" type="Node" unique_id=1436432345]
+
+[node name="Background" type="TextureRect" parent="." unique_id=1082810047]
+material = SubResource("ShaderMaterial_8ln24")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_j3880")
+stretch_mode = 1
+
+[node name="MenuUI" type="Control" parent="." unique_id=1972695698]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_d63uk")
+
+[node name="StatusBar" type="HBoxContainer" parent="MenuUI" unique_id=1265266545]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ConnectBtn" type="Button" parent="MenuUI/StatusBar" unique_id=468080442]
+layout_mode = 2
+text = "联机"
+
+[node name="UserName" type="TextEdit" parent="MenuUI/StatusBar" unique_id=973970562]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "用户名"
+
+[node name="StatusLabel" type="Label" parent="MenuUI/StatusBar" unique_id=1638960240]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MenuUI/StatusBar" unique_id=1878190958]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuitBtn" type="Button" parent="MenuUI/StatusBar" unique_id=1390399366]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/icon_max_width = 40
+icon = ExtResource("4_4mmo1")
+flat = true
+icon_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuUI" unique_id=1618452533]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 50.0
+offset_right = 250.0
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="MenuUI/VBoxContainer" unique_id=12369666]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MenuUI" unique_id=1903226929]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 300.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 5
+
+[node name="Wuziqi" type="Button" parent="MenuUI/GridContainer" unique_id=159530987]
+custom_minimum_size = Vector2(200, 280)
+layout_mode = 2
+text = "五子棋"
+
+[node name="WuziqiEat" type="Button" parent="MenuUI/GridContainer" unique_id=1076795792]
+custom_minimum_size = Vector2(200, 280)
+layout_mode = 2
+text = "吃子补子"
+
+[node name="Snake" type="Button" parent="MenuUI/GridContainer" unique_id=60944254]
+custom_minimum_size = Vector2(200, 280)
+layout_mode = 2
+text = "敬请期待"
+
+[node name="btn3" type="Button" parent="MenuUI/GridContainer" unique_id=1685621890]
+custom_minimum_size = Vector2(200, 280)
+layout_mode = 2
+text = "敬请期待"
+
+[node name="btn4" type="Button" parent="MenuUI/GridContainer" unique_id=1103075988]
+custom_minimum_size = Vector2(200, 280)
+layout_mode = 2
+text = "敬请期待"
+
+[node name="btn5" type="Button" parent="MenuUI/GridContainer" unique_id=42555247]
+custom_minimum_size = Vector2(200, 280)
+layout_mode = 2
+text = "敬请期待"
+
+[node name="btn6" type="Button" parent="MenuUI/GridContainer" unique_id=2146164881]
+custom_minimum_size = Vector2(200, 280)
+layout_mode = 2
+text = "敬请期待"
+
+[node name="btn7" type="Button" parent="MenuUI/GridContainer" unique_id=159551452]
+custom_minimum_size = Vector2(200, 280)
+layout_mode = 2
+text = "敬请期待"
+
+[node name="OnlineMenu" parent="." unique_id=-1418424086 instance=ExtResource("5_online")]
+visible = false
+
+[node name="InviteDialog" parent="." unique_id=-1418424085 instance=ExtResource("6_invite")]
+visible = false

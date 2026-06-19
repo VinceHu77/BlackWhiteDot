@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://u5ni5nplvpjq"]
+
+[ext_resource type="Script" uid="uid://dckxlb25vekps" path="res://core/ui/online_hud.gd" id="1_ju6au"]
+
+[node name="OnlineHUD" type="Control" unique_id=340277881]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ju6au")
+
+[node name="BlackSeat" type="Label" parent="." unique_id=224428226]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 44.0
+text = "1"
+
+[node name="WhiteSeat" type="Label" parent="." unique_id=1260118106]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 44.0
+grow_horizontal = 0
+text = "2"
