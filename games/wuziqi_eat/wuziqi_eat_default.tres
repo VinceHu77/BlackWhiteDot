@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WuziqiEatCfg" format=3 uid="uid://cfe1db5yg38t2"]
+
+[ext_resource type="Script" uid="uid://c51ca707i3yhr" path="res://games/wuziqi_eat/wuziqi_eat_config.gd" id="1_2plhh"]
+[ext_resource type="PackedScene" uid="uid://dbgcuv5t2bj1m" path="res://games/shared/prefabs/black_chess.tscn" id="1_u2ctb"]
+[ext_resource type="PackedScene" uid="uid://blkmnl387ylm6" path="res://games/shared/prefabs/white_chess.tscn" id="3_25jr3"]
+
+[resource]
+script = ExtResource("1_2plhh")
+black_chess_scene = ExtResource("1_u2ctb")
+white_chess_scene = ExtResource("3_25jr3")
+metadata/_custom_type_script = "uid://c51ca707i3yhr"

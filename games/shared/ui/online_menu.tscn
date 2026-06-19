@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bst7cokhtqs3y"]
+
+[ext_resource type="Script" uid="uid://dned6oyoobe40" path="res://games/shared/ui/online_menu.gd" id="1_8wic7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1143"]
+bg_color = Color(0.39942783, 0.3994278, 0.39942777, 1)
+
+[node name="OnlineMenu" type="PopupPanel" unique_id=2127185075]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(400, 200)
+visible = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_h1143")
+script = ExtResource("1_8wic7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1047142671]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 400.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="IpAddress" type="OptionButton" parent="VBoxContainer" unique_id=32513350]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="IpAddress" type="OptionButton" parent="VBoxContainer/IpAddress" unique_id=1298190161]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+
+[node name="HostBtn" type="Button" parent="VBoxContainer" unique_id=1044071625]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "HOST"
+
+[node name="JoinBtn" type="Button" parent="VBoxContainer" unique_id=1653142599]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "JOIN"

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://blkmnl387ylm6"]
+
+[ext_resource type="Texture2D" uid="uid://7yn7vm50h7at" path="res://assets/images/black_white.png" id="1_658n4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tga1k"]
+radius = 26.0
+
+[node name="WhiteChess" type="RigidBody2D" unique_id=1601121747]
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1015038491]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_658n4")
+region_enabled = true
+region_rect = Rect2(214, 192, 150, 150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689472685]
+shape = SubResource("CircleShape2D_tga1k")

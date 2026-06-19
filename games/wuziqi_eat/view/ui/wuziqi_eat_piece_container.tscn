@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cdhwrfvt5l40j"]
+
+[ext_resource type="Script" uid="uid://ci6cl0n7i6lmm" path="res://games/wuziqi_eat/view/ui/wuziqi_eat_piece_container.gd" id="1_5c17l"]
+
+[node name="PieceCtn" type="Control" unique_id=1089668034]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 900.0
+script = ExtResource("1_5c17l")

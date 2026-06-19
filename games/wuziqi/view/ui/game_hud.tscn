@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://d1bkxq5e4r1v1"]
+
+[ext_resource type="Script" uid="uid://0odfe3jd1o17" path="res://games/wuziqi/view/ui/game_hud.gd" id="1_mpe44"]
+
+[node name="GameHUD" type="Control" unique_id=1745746513]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_mpe44")
+
+[node name="TurnLbl" type="Label" parent="." unique_id=137730879]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 49.999985
+grow_horizontal = 2
+text = "黑棋回合"
+horizontal_alignment = 1
+
+[node name="ResultPan" type="Panel" parent="." unique_id=1724818246]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultLbl" type="Label" parent="ResultPan" unique_id=497755910]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -40.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "黑棋胜利！"
+horizontal_alignment = 1
+
+[node name="RestartBtn" type="Button" parent="ResultPan" unique_id=1842547830]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -59.5
+offset_top = -52.0
+offset_right = 59.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Restart"
+
+[node name="BackBtn" type="Button" parent="ResultPan" unique_id=730707767]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -52.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back"

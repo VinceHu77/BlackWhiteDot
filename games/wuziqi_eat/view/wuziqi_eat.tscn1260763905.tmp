@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://bukbdac3alame"]
+
+[ext_resource type="Script" uid="uid://d1xy1xc22hgcw" path="res://games/wuziqi_eat/wuziqi_eat_entry.gd" id="1_m1cbp"]
+[ext_resource type="Shader" uid="uid://b3oqkjl88ymrn" path="res://assets/shaders/background.gdshader" id="2_u3rpy"]
+[ext_resource type="Texture2D" uid="uid://ylusirqtyqql" path="res://assets/images/background.png" id="3_p7o55"]
+[ext_resource type="Texture2D" uid="uid://d08u8b1xy4wlc" path="res://assets/images/board_background.jpg" id="4_vlp0b"]
+[ext_resource type="Script" uid="uid://buqv3vfitkmt1" path="res://games/wuziqi/view/chess_board.gd" id="5_1eff1"]
+[ext_resource type="Script" uid="uid://d0cdu6r66cifj" path="res://games/wuziqi/view/components/click_component.gd" id="6_wdnrq"]
+[ext_resource type="Script" uid="uid://dt0h5tg86owhq" path="res://games/wuziqi/view/components/draw_component.gd" id="7_oe6gw"]
+[ext_resource type="PackedScene" uid="uid://dk1nf6ee65o4g" path="res://games/wuziqi_eat/view/wuziqi_eat_hud.tscn" id="8_m1cbp"]
+[ext_resource type="PackedScene" uid="uid://u5ni5nplvpjq" path="res://core/ui/online_hud.tscn" id="9_r7hrh"]
+[ext_resource type="PackedScene" uid="uid://cdhwrfvt5l40j" path="res://games/wuziqi_eat/view/wuziqi_eat_piece_container.tscn" id="10_t3aw2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwqdw"]
+shader = ExtResource("2_u3rpy")
+
+[node name="WuziqiEatEntry" type="Node" unique_id=937361647]
+script = ExtResource("1_m1cbp")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1141396471]
+material = SubResource("ShaderMaterial_cwqdw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_p7o55")
+stretch_mode = 1
+
+[node name="BoardFrame" type="Control" parent="." unique_id=2004892996]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -415.0
+offset_top = -415.0
+offset_right = 415.0
+offset_bottom = 415.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoardBackground" type="TextureRect" parent="BoardFrame" unique_id=1668091906]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vlp0b")
+expand_mode = 1
+
+[node name="ChessBoard" type="Control" parent="." unique_id=1197939855]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -384.0
+offset_right = 384.0
+offset_bottom = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_1eff1")
+
+[node name="ClickComp" type="Control" parent="ChessBoard" unique_id=441490710]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_wdnrq")
+
+[node name="DrawComp" type="Node2D" parent="ChessBoard" unique_id=1304335302]
+script = ExtResource("7_oe6gw")
+
+[node name="GameHUD" parent="." unique_id=1745746513 instance=ExtResource("8_m1cbp")]
+
+[node name="OnlineHUD" parent="." unique_id=340277881 instance=ExtResource("9_r7hrh")]
+mouse_filter = 2
+
+[node name="BlackCtn" type="Panel" parent="." unique_id=1191179968]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = -10.0
+grow_vertical = 2
+
+[node name="PieceCtn" parent="BlackCtn" unique_id=1089668034 instance=ExtResource("10_t3aw2")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -450.0
+offset_right = 150.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WhiteCtn" type="Panel" parent="." unique_id=579483743]
+custom_minimum_size = Vector2(0, 880)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -290.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 890.0
+grow_horizontal = 0
+
+[node name="PieceCtn" parent="WhiteCtn" unique_id=1544128818 instance=ExtResource("10_t3aw2")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -450.0
+offset_right = 150.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2

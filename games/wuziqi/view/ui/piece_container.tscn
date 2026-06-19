@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://bxhqfdccirk3j"]
+
+[ext_resource type="PackedScene" uid="uid://dbgcuv5t2bj1m" path="res://games/shared/prefabs/black_chess.tscn" id="2_1r8a8"]
+
+[sub_resource type="GDScript" id="GDScript_2xo0d"]
+script/source = "extends Control
+class_name PieceCtn
+
+@export var piece_scene: PackedScene
+var piece_scale: float = 0.1
+var piece_radius: float = 15.0
+var W = size.x
+var H = size.y
+var wall_thick = 5
+const PIECE_NUM := 80
+var pieces: Array[Node2D] = []
+var _boundary: StaticBody2D = null
+var _dragging: Node2D = null
+var _drag_offset: Vector2 = Vector2.ZERO
+
+func init_container(scene: PackedScene) -> void:
+	piece_scene = scene
+	_create_boundary()
+	for i in range(PIECE_NUM):
+		var piece = piece_scene.instantiate()
+		piece.scale = Vector2(piece_scale, piece_scale)
+		piece.gravity_scale = 1.0
+		add_child(piece)
+		pieces.append(piece)
+	_refresh_pos()
+	_wake_all()
+
+func _create_boundary():
+	if _boundary: _boundary.queue_free()
+	_boundary = StaticBody2D.new()
+	add_child(_boundary)
+	# 1. 上墙
+	var top = CollisionShape2D.new()
+	var top_rect = RectangleShape2D.new()
+	top_rect.extents = Vector2(W / 2.0, wall_thick)
+	top.shape = top_rect
+	top.position = Vector2(W / 2.0, wall_thick)
+	_boundary.add_child(top)
+	# 2. 下墙
+	var bot = CollisionShape2D.new()
+	var bot_rect = RectangleShape2D.new()
+	bot_rect.extents = Vector2(W / 2.0, wall_thick)
+	bot.shape = bot_rect
+	bot.position = Vector2(W / 2.0, H - wall_thick)
+	_boundary.add_child(bot)
+	# 3. 左墙
+	var left = CollisionShape2D.new()
+	var left_rect = RectangleShape2D.new()
+	left_rect.extents = Vector2(wall_thick, H / 2.0)
+	left.shape = left_rect
+	left.position = Vector2(wall_thick, H / 2.0)
+	_boundary.add_child(left)
+	# 4. 右墙
+	var right = CollisionShape2D.new()
+	var right_rect = RectangleShape2D.new()
+	right_rect.extents = Vector2(wall_thick, H / 2.0)
+	right.shape = right_rect
+	right.position = Vector2(W - wall_thick, H / 2.0)
+	_boundary.add_child(right)
+
+func _refresh_pos() -> void:
+	var rect := get_rect()
+	var padding := piece_radius + 5
+	for piece in pieces:
+		var attempts := 0
+		var new_pos := Vector2.ZERO
+		while attempts < 50:
+			new_pos = Vector2(
+				randf_range(padding, rect.size.x - padding),
+				randf_range(padding, rect.size.y - padding)
+			)
+			if _is_position_valid(new_pos):
+				break
+			attempts += 1
+		piece.position = new_pos
+		piece.rotation = randf_range(-0.25, 0.25)
+
+func _is_position_valid(pos: Vector2) -> bool:
+	var min_distance := piece_radius * 2
+	for piece in pieces:
+		var dist := pos.distance_to(piece.position)
+		if dist < min_distance:
+			return false
+	return true
+
+func remove_piece():
+	if pieces.size() <= 0: return
+	var random_idx = randi_range(0, pieces.size() - 1)
+	var piece = pieces[random_idx]
+	pieces.remove_at(random_idx)
+	piece.queue_free()
+	_wake_all()
+
+func _wake_all() -> void:
+	for piece in pieces:
+		if piece is RigidBody2D:
+			piece.sleeping = false
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				_try_start_drag(get_local_mouse_position())
+			else:
+				_stop_drag()
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			_remove_at_pos(get_local_mouse_position())
+	elif event is InputEventMouseMotion and _dragging:
+		_update_drag(get_local_mouse_position())
+
+func _try_start_drag(mouse_pos: Vector2) -> void:
+	for piece in pieces:
+		if mouse_pos.distance_to(piece.position) < piece_radius * 2:
+			_dragging = piece
+			_drag_offset = piece.position - mouse_pos
+			break
+
+func _remove_at_pos(mouse_pos: Vector2) -> void:
+	var idx := -1
+	for i in range(pieces.size()):
+		if mouse_pos.distance_to(pieces[i].position) < piece_radius * 2:
+			idx = i
+			break
+	if idx < 0: return
+	var piece = pieces[idx]
+	pieces.remove_at(idx)
+	piece.queue_free()
+	_wake_all()
+
+func _stop_drag() -> void:
+	if _dragging:
+		_dragging.linear_velocity = Vector2.ZERO
+	_dragging = null
+
+func _update_drag(mouse_pos: Vector2) -> void:
+	var target := mouse_pos + _drag_offset
+	var rect := get_rect()
+	var padding := piece_radius + 5
+	target.x = clamp(target.x, padding, rect.size.x - padding)
+	target.y = clamp(target.y, padding, rect.size.y - padding)
+	_dragging.linear_velocity = (target - _dragging.position) * 10.0
+"
+
+[node name="PieceCtn" type="Control" unique_id=1089668034]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 900.0
+script = SubResource("GDScript_2xo0d")
+piece_scene = ExtResource("2_1r8a8")

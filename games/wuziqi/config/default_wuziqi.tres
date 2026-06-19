@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WuziqiCfg" format=3 uid="uid://8sa8wnanwrhb"]
+
+[ext_resource type="Script" uid="uid://d157juakhiwpq" path="res://games/wuziqi/config/wuziqi_config.gd" id="1_v1acm"]
+[ext_resource type="PackedScene" uid="uid://dbgcuv5t2bj1m" path="res://games/shared/prefabs/black_chess.tscn" id="2_black"]
+[ext_resource type="PackedScene" uid="uid://blkmnl387ylm6" path="res://games/shared/prefabs/white_chess.tscn" id="3_white"]
+
+[resource]
+script = ExtResource("1_v1acm")
+cell_size = 55
+line_width = 5
+max_pieces = 50
+black_chess_scene = ExtResource("2_black")
+white_chess_scene = ExtResource("3_white")
+metadata/_custom_type_script = "uid://d157juakhiwpq"
